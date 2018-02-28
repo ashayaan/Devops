@@ -14,6 +14,7 @@ mysql.init_app(app)
 # @app.route('/')
 # def student():
 # 	return render_template('index.html')
+# session["logged_in"]=False
 
 @app.route('/')
 def home():
@@ -58,7 +59,7 @@ def signUp():
 
 
 
-@app.route('/login', methods=['POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def do_admin_login():
 	password = request.form['password']
 	username = request.form['username']
