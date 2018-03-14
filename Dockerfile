@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM ubuntu:16.04
 
 MAINTAINER Name Shayaan_Pranav
 RUN apt-get -y update
