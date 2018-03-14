@@ -10,12 +10,6 @@ app.config['MYSQL_DATABASE_DB'] = 'devops'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 mysql.init_app(app)
 
-
-# @app.route('/')
-# def student():
-# 	return render_template('index.html')
-# session["logged_in"]=False
-
 @app.route('/')
 def home():
 	if not session.get('logged_in'):
