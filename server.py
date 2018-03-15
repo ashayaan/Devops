@@ -34,15 +34,16 @@ def signin():
 
 @app.route('/signUp',methods=['POST'])
 def signUp():
-	query = "INSERT INTO users(ID,Name,username,password) " \
-            "VALUES(%s,%s,%s,%s)"
+	query = "INSERT INTO users(ID,Name,username,password,email) " \
+            "VALUES(%s,%s,%s,%s,%s)"
 	name = request.form['name']
 	username = request.form['username']
 	password = request.form['password']
+	email = request.form['email']
 	conn = mysql.connect()
 	cursor = conn.cursor()
-	if name and username and password:
-		isdata = (0,name,username,password)
+	if name and username and password and email:
+		isdata = (0,name,username,password,email)
 		cursor.execute("SELECT * from users where username='" + username + "'")
 		data = cursor.fetchone()
 		if data is None:
