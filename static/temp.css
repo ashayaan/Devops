@@ -1,7 +1,14 @@
+* {
+box-sizing: border-box;
+}
+ 
+*:focus {
+	outline: none;
+}
 body {
 font-family: Arial;
 background-color: #3498DB;
-/*padding: 50px;*/
+padding: 50px;
 }
 
 .login {
@@ -70,4 +77,3 @@ box-shadow: none;
   display: block;
 	margin-top: 12px;
 }
-
