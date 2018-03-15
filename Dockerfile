@@ -1,4 +1,4 @@
-FROM ashayaan/flask-server:flask
+FROM ashayaan/flask-server
 
 MAINTAINER Name Shayaan_Pranav
 RUN rm -rf Devops
