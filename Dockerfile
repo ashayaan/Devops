@@ -5,5 +5,4 @@ RUN rm -rf Devops
 RUN git clone https://github.com/ashayaan/Devops.git
 EXPOSE 5000
 WORKDIR Devops
-CMD mysql -u root --password="Shayaan7" <database.sql
 CMD python Devops/server.py &
