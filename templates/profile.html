@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		Profile</title>
+	<link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css" type="text/css">
+	<!-- <link rel="stylesheet" href="/static/style.css" type="text/css"> -->
+	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+	<link rel="stylesheet" href="/static/bootstrap/css/bootstrap-theme.css" type="text/css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<style type="text/css">
+		body {
+
+			font-family: 'Nunito', sans-serif;
+			background-image: url("/static/back.png");
+			/*background-color: #3498DB;*/
+			/*padding: 50px;*/
+		}
+
+		.error{
+			font-size: 2em;
+			color: white;
+			margin-left: 17em;
+			margin-bottom: 0px;
+		}
+		.dropdown .dropbtn {
+			font-size: 16px; 
+			border: none;
+			outline: none;
+			color: grey;
+			padding: 14px 16px;
+			background-color: inherit;
+			font-family: inherit; /* Important for vertical align on mobile phones */
+			margin: 0; /* Important for vertical align on mobile phones */
+		}
+
+		/* Add a red background color to navbar links on hover */
+		.navbar a:hover, .dropdown:hover .dropbtn {
+			background-color: #bcc0c6;
+		}
+
+		/* Dropdown content (hidden by default) */
+		.dropdown-content {
+			display: none;
+			position: absolute;
+			background-color: #f9f9f9;
+			min-width: 160px;
+			box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+			z-index: 1;
+		}
+
+		/* Links inside the dropdown */
+		.dropdown-content a {
+			float: none;
+			color: black;
+			padding: 12px 16px;
+			text-decoration: none;
+			display: block;
+			text-align: left;
+		}
+
+		/* Add a grey background color to dropdown links on hover */
+		.dropdown-content a:hover {
+			background-color: #ddd;
+		}
+
+		/* Show the dropdown menu on hover */
+		.dropdown:hover .dropdown-content {
+			display: block;
+		}
+	</style>
+</head>
+
+
+<body>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+		<ul class="nav navbar-nav">
+			<li><a href="/">Home</a></li>
+		</ul>
+		<ul class="nav navbar-nav navbar-right">
+			<li>
+				<div class="dropdown">
+					<button class="dropbtn"> <span class="glyphicon glyphicon-user"></span> {{session.username}} 
+							<i class="fa fa-caret-down"></i>
+					</button>
+					<div class="dropdown-content ">
+							<a href="/profile">Profile</a>
+							<a href="/books_added">Books Added</a>
+							<a href="/logout" ><span class="glyphicon glyphicon-log-out"></span>Logout</a>
+					</div>
+				</div>
+			</li>
+		</ul>
+		</div>
+	</nav>
+	{% if error %}
+    		<p class="error"><strong>Error:</strong> {{ error }} </p>
+  {% endif %}
+
+	<div class="container" style="background-color: white; box-shadow: 5px 5px grey; font-size: 1.5em; font-weight:600;margin-top: 5em">
+		<div class="row" style="box-shadow: 1px 1px;  height: 2em;">
+			<div class="col-lg-6">
+				Name
+			</div>
+			<div class="col-lg-6">
+				{{session.name}}
+			</div>	
+		</div>
+		
+		<div class="row" style="box-shadow: 1px 1px;  height: 2em;">
+			<div class="col-lg-6">
+				Email
+			</div>
+			<div class="col-lg-6">
+				{{session.email}}
+			</div>	
+		</div>
+		
+		<div class="row" style="box-shadow: 1px 1px;  height: 2em;">
+			<div class="col-lg-6">
+				Mobile Number
+			</div>
+			<div class="col-lg-6">
+				{{session.number}}
+					<button type="button"  data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-edit"></span></button>
+					<div class="modal fade" id="myModal" role="dialog">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h4 class="modal-title">Change Number</h4>
+									</div>
+									<div class="modal-body">
+											<form action="/editNumber" method="POST">
+												<input type="number" value=""  name="number">
+												<label class="login-field-icon fui-user" for="login-name"></label>
+												<input type="submit" value="change">
+											</form>
+									</div>
+									<div class="modal-footer">
+											<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+									</div>
+							 </div>
+			
+						</div>				
+				</div>	
+			</div>
+		</div>
+
+		<div class="row" style="box-shadow: 1px 1px; height: 2em;">
+			<div class="col-lg-6">
+				Password
+			</div>
+			<div class="col-lg-6">
+				<!-- {{session.password}} -->
+				Change Password
+					<button type="button"  data-toggle="modal" data-target="#mymodal2"><span class="glyphicon glyphicon-edit"></span></button>
+						<div class="modal fade" id="mymodal2" role="dialog">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h4 class="modal-title">Change Password</h4>
+									</div>
+									<div class="modal-body">
+								<!-- Enter Form here -->
+								<form action="/changePassword" method="POST" style="align-self: center;">
+									<div>
+										<div>
+											<div>
+												<div >
+													<input type="password" class="login-field" value="" placeholder="Old Password" name="opassword">
+													<label class="login-field-icon fui-lock" for="login-pass"></label>
+												</div>
+												<div >
+													<input type="password" class="login-field" value="" placeholder="New Password" name="npassword">
+													<label class="login-field-icon fui-lock" for="login-pass"></label>
+												</div>
+												<div >
+													<input type="password" class="login-field" value="" placeholder="Re-enter Password" name="rnpassword">
+													<label class="login-field-icon fui-lock" for="login-pass"></label>
+												</div>
+													<input type="submit" value="Change Password">
+											</div>
+										</div>
+									</div>
+								</form>
+									</div>
+									<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+									</div>
+							 </div>
+			
+						</div>				
+				</div>	
+			</div>	
+		</div>
+		
+	</div>
+
+
+	
+</div>
+</body>
+</html>

@@ -4,41 +4,114 @@
 	<title>Home</title>
 	<link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css" type="text/css">
 	<link rel="stylesheet" href="/static/bootstrap/css/bootstrap-theme.css" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 	<style type="text/css">
 		body {
-			font-family: Arial;
-			background-color: #3498DB;
+			font-family: 'Nunito', sans-serif;
+			background-image: url("/static/back.png");
 			color: white;
 		}
 
 		.img{
-			height: 275px;
-			width: 275px;
+			margin-top: 1em;
+			height: 20em;
+			width: 20em;
+		}
+		/* Dropdown button */
+		.dropdown .dropbtn {
+		  font-size: 16px; 
+		  border: none;
+		  outline: none;
+		  color: grey;
+		  padding: 14px 16px;
+		  background-color: inherit;
+		  font-family: inherit; /* Important for vertical align on mobile phones */
+		  margin: 0; /* Important for vertical align on mobile phones */
+		}
+
+		/* Add a red background color to navbar links on hover */
+		.navbar a:hover, .dropdown:hover .dropbtn {
+		  background-color: #bcc0c6;
+		}
+
+		/* Dropdown content (hidden by default) */
+		.dropdown-content {
+		  display: none;
+		  position: absolute;
+		  background-color: #f9f9f9;
+		  min-width: 160px;
+		  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+		  z-index: 1;
+		}
+
+		/* Links inside the dropdown */
+		.dropdown-content a {
+		  float: none;
+		  color: black;
+		  padding: 12px 16px;
+		  text-decoration: none;
+		  display: block;
+		  text-align: left;
+		}
+
+		/* Add a grey background color to dropdown links on hover */
+		.dropdown-content a:hover {
+		  background-color: #ddd;
+		}
+
+		/* Show the dropdown menu on hover */
+		.dropdown:hover .dropdown-content {
+		  display: block;
+		}
+
+		.tile{
+			border-radius: 5px;
+			background-color: white;
+			color: black;
+			box-shadow: 15px 15px 15px;
+
 		}
 	</style>
 </head>
 <body>
-	<nav class="navbar navbar-inverse">
+	<nav class="navbar navbar-default">
 	  <div class="container-fluid">
 		<ul class="nav navbar-nav">
 		  <li class="active"><a href="/">Home</a></li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
-		  <li><a href="/logout" ><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+		 
+		  <li>
+		  	<div class="dropdown">
+    			<button class="dropbtn"> <span class="glyphicon glyphicon-user"></span> {{session.username}} 
+      				<i class="fa fa-caret-down"></i>
+    			</button>
+	    		<div class="dropdown-content ">
+	      			<a href="/profile">Profile</a>
+	      			<a href="/books_added">Books Added</a>
+	      			<a href="/logout" ><span class="glyphicon glyphicon-log-out"></span>Logout</a>
+    			</div>
+  			</div>
+		  </li>
 		</ul>
 	  </div>
 	</nav>
 
-	<h1 class="text-center">Welcome</h1>
+
+	{% if session.logged_in %}
+    	<h1 class="text-center">Welcome {{session.username}}</h1>
+	{% endif %}
+
+	<!-- <h1 class="text-center">Welcome</h1> -->
 	<div class="container dynamicTile">
-		<div class="row ">
-    		<div class="col-lg-6 col-md-6 col-xs-6 text-center">
+		<div class="row">
+    		<div class="col-lg-4 col-md-4 col-xs-4 text-center tile">
     			<div class="item active">
-               		<img class="img" src="/static/search.png" class="img-responsive"/>
+               		<img class="img" src="/static/mod-find-book.png" class="img-responsive"/>
             	</div>
-            	<h1>Search Books</h1>
+            	<h1>Find Books</h1>
         	</div>
-         
+         	
     	</div>
 	</div>
 </div>

@@ -1,6 +1,7 @@
 from flask import Flask, flash, redirect, render_template, request, session, abort
 from flaskext.mysql import MySQL
 import os
+import time
 
 mysql = MySQL()
 app = Flask(__name__)
@@ -11,10 +12,6 @@ app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 mysql.init_app(app)
 
 
-# @app.route('/')
-# def student():
-# 	return render_template('index.html')
-# session["logged_in"]=False
 
 @app.route('/')
 def home():
@@ -23,6 +20,80 @@ def home():
 	else:
 		return render_template("home.html")
 
+
+@app.route('/editbook',methods=['GET', 'POST'])
+def editBooks():
+	isbn = request.form["ISBN"]
+	title = request.form["title"]
+	author = request.form["author"]
+	description = request.form["description"]
+	book_type = request.form["type"]
+	conn = mysql.connect()
+	cursor =conn.cursor()
+	cursor.execute("UPDATE books set name='"+title+"', author='"+author+"', description='"+description+"', time_added='"+time.strftime('%Y-%m-%d')+"',type='"+book_type+"' where user_id='"+str(session['ID'])+"' and ISBN='"+isbn+"'")
+	conn.commit()
+	# print author,isbn
+	return booksAdded()
+
+@app.route('/delbook',methods=['GET', 'POST'])
+def deleteBooks():
+	isbn = request.form["ISBN"]
+	conn = mysql.connect()
+	cursor =conn.cursor()
+	cursor.execute("DELETE from books where user_id='"+str(session['ID'])+"' and ISBN='"+isbn+"'")
+	conn.commit()
+	# print author,isbn
+	return booksAdded()
+
+@app.route('/profile')
+def profile():
+	conn = mysql.connect()
+	cursor =conn.cursor()
+	cursor.execute("SELECT * from users where username='" + session['username'] + "'")
+	data = cursor.fetchone() 
+	session['name'] = data[1]
+	session['password'] = data[3]
+	session['email'] = data[4]
+	session['number'] = data[5]
+	return render_template("profile.html")
+
+@app.route('/books_added')
+def booksAdded():
+	conn = mysql.connect()
+	cursor = conn.cursor()
+	cursor.execute("SELECT ISBN,name,author,description, type from books where user_id='"+str(session['ID'])+"'")
+	data = cursor.fetchall()
+	# print data
+	return render_template("books_added.html",result = data)
+
+
+@app.route('/editNumber', methods=['GET', 'POST'])
+def editNumber():
+	no = request.form['number']
+	conn = mysql.connect()
+	cursor = conn.cursor()
+	cursor.execute("UPDATE users set number ='"+no+"' where ID='"+str(session['ID'])+"'")
+	conn.commit()
+	return profile()
+
+@app.route('/changePassword', methods=['GET', 'POST'])
+def changePassword():
+	opass = request.form['opassword']
+	npass = request.form['npassword']
+	rnpass = request.form['rnpassword']
+
+	if (opass != session['password']):
+		error = 'Old Password did not match'
+		return render_template('profile.html',error=error)
+	elif (npass != rnpass):
+		error = 'New password did not match each other'
+		return render_template('profile.html',error=error)
+	else:
+		conn = mysql.connect()
+		cursor = conn.cursor()
+		cursor.execute("UPDATE users set password ='"+npass+"' where ID='"+str(session['ID'])+"'")
+		conn.commit()
+		return profile()
 
 @app.route('/showSignUp')
 def showSignUp():
@@ -73,6 +144,8 @@ def do_admin_login():
 		return render_template('signin.html',error=error)
 	else:
 		session['logged_in'] = True
+		session['ID'] = data[0]
+		session['username'] = username
 		return home()
 
 @app.route("/logout")
