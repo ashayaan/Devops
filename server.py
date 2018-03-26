@@ -35,6 +35,21 @@ def editBooks():
 	# print author,isbn
 	return booksAdded()
 
+@app.route('/request_add', methods=['GET','POST'])
+def addRequest():
+	req = request.form["request"]
+	conn = mysql.connect()
+	cursor = conn.cursor()
+	print req
+	query = "INSERT INTO requests(user_id,requests) " \
+			"VALUES(%s,%s)"
+	data = (session['ID'],req)
+	cursor.execute(query,data)
+	conn.commit()
+	return home()
+
+
+
 @app.route('/delbook',methods=['GET', 'POST'])
 def deleteBooks():
 	isbn = request.form["ISBN"]
@@ -106,7 +121,7 @@ def signin():
 @app.route('/signUp',methods=['POST'])
 def signUp():
 	query = "INSERT INTO users(ID,Name,username,password,email) " \
-            "VALUES(%s,%s,%s,%s,%s)"
+			"VALUES(%s,%s,%s,%s,%s)"
 	name = request.form['name']
 	username = request.form['username']
 	password = request.form['password']

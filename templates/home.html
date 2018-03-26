@@ -5,11 +5,21 @@
 	<link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css" type="text/css">
 	<link rel="stylesheet" href="/static/bootstrap/css/bootstrap-theme.css" type="text/css">
 	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 	<style type="text/css">
 		body {
 			font-family: 'Nunito', sans-serif;
 			background-image: url("/static/back.png");
 			color: white;
+		}
+
+		.nav_button{
+			size: 20px;
+			border: none;
+			margin-top: 13px;
+			color: black;
 		}
 
 		.img{
@@ -87,6 +97,39 @@
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
 		 
+		  <li style="color: black;">
+		  		<button type="button"  data-toggle="modal" data-target="#mymodal2" class="nav_button">Request</button>
+					<div class="modal fade" id="mymodal2" role="dialog">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h4 class="modal-title">Add a new request</h4>
+									</div>
+									<div class="modal-body">
+											<form action="/request_add" method="POST">
+												<div>
+													<h4>
+														Request
+													</h4>
+												</div>
+												<div>
+													<input type="text" name="request" size="40" style="height: 80px;">
+												
+												</div>
+												<div>
+													<input type="submit" value="ADD">
+												</div>
+											</form>
+									</div>
+									<div class="modal-footer">
+											<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+									</div>
+							 </div>
+			
+						</div>				
+					</div>
+		  </li>
 		  <li>
 		  	<div class="dropdown">
     			<button class="dropbtn"> <span class="glyphicon glyphicon-user"></span> {{session.username}} 
