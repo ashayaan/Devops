@@ -48,6 +48,15 @@ def addRequest():
 	conn.commit()
 	return home()
 
+@app.route('/view_request', methods=['GET','POST'])
+def viewRequest():
+	conn = mysql.connect()
+	cursor = conn.cursor()
+	cursor.execute("SELECT users.Name, users.email,users.number,requests.requests from users,requests where users.ID = requests.user_id")
+	data = cursor.fetchall()
+	print data
+	return home()
+
 
 
 @app.route('/delbook',methods=['GET', 'POST'])
