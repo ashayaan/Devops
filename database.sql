@@ -7,5 +7,6 @@ alter table books add time_added DATE;
 alter table books add type varchar(20);
 CREATE table requests(user_id int, requests varchar(1000));
 alter table requests add FOREIGN KEY (user_id) REFERENCES users(ID);
+alter table requests add time_added DATE;
 alter table books add FOREIGN KEY (user_id) REFERENCES users(ID);
 

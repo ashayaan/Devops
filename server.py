@@ -41,21 +41,21 @@ def addRequest():
 	conn = mysql.connect()
 	cursor = conn.cursor()
 	print req
-	query = "INSERT INTO requests(user_id,requests) " \
-			"VALUES(%s,%s)"
-	data = (session['ID'],req)
+	query = "INSERT INTO requests(user_id,requests,time_added) " \
+			"VALUES(%s,%s,%s)"
+	data = (session['ID'],req,time.strftime('%Y-%m-%d'))
 	cursor.execute(query,data)
 	conn.commit()
-	return home()
+	return viewRequest()
 
 @app.route('/view_request', methods=['GET','POST'])
 def viewRequest():
 	conn = mysql.connect()
 	cursor = conn.cursor()
-	cursor.execute("SELECT users.Name, users.email,users.number,requests.requests from users,requests where users.ID = requests.user_id")
+	cursor.execute("SELECT users.Name, users.email,users.number,requests.requests,requests.time_added from users,requests where users.ID = requests.user_id order by time_added DESC;")
 	data = cursor.fetchall()
-	print data
-	return home()
+	# print data
+	return render_template("view.html", result = data)
 
 
 

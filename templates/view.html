@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>View Requests</title>
+	<link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css" type="text/css">
+	<link rel="stylesheet" href="/static/bootstrap/css/bootstrap-theme.css" type="text/css">
+	<link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<style type="text/css">
+		body {
+			font-family: 'Nunito', sans-serif;
+			background-image: url("/static/back.png");
+			color: white;
+		}
+
+		.nav_button{
+			size: 20px;
+			border: none;
+			background: none;
+			margin-top: 15px;
+			color: grey;
+		}
+
+		.img{
+			margin-top: 1em;
+			height: 250px;
+			width: 250px;
+		}
+		/* Dropdown button */
+		.dropdown .dropbtn {
+		  font-size: 16px; 
+		  border: none;
+		  outline: none;
+		  color: grey;
+		  padding: 14px 16px;
+		  background-color: inherit;
+		  font-family: inherit; /* Important for vertical align on mobile phones */
+		  margin: 0; /* Important for vertical align on mobile phones */
+		}
+
+		/* Add a red background color to navbar links on hover */
+		.navbar a:hover, .dropdown:hover .dropbtn {
+		  background-color: #bcc0c6;
+		}
+
+		/* Dropdown content (hidden by default) */
+		.dropdown-content {
+		  display: none;
+		  position: absolute;
+		  background-color: #f9f9f9;
+		  min-width: 160px;
+		  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+		  z-index: 1;
+		}
+
+		/* Links inside the dropdown */
+		.dropdown-content a {
+		  float: none;
+		  color: black;
+		  padding: 12px 16px;
+		  text-decoration: none;
+		  display: block;
+		  text-align: left;
+		}
+
+		/* Add a grey background color to dropdown links on hover */
+		.dropdown-content a:hover {
+		  background-color: #ddd;
+		}
+
+		/* Show the dropdown menu on hover */
+		.dropdown:hover .dropdown-content {
+		  display: block;
+		}
+
+		.tile{
+			border-radius: 5px;
+			background-color: white;
+			color: black;
+			box-shadow: 15px 15px 15px;
+		}
+
+		@media only screen and (min-width: 500px) {
+ 			.centering_row {
+    	    	margin-left: 60px;
+    		}
+		}
+		.table td {
+   			text-align: center;   	
+		}
+
+		tr:hover{
+			background-color: #f5f5f5;
+		}
+	</style>
+</head>
+<body>
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+		<ul class="nav navbar-nav">
+		  <li ><a href="/">Home</a></li>
+		</ul>
+		<ul class="nav navbar-nav navbar-right">
+		 
+		  <li style="color: black;">
+		  		<button type="button"  data-toggle="modal" data-target="#mymodal2" class="nav_button">Request</button>
+					<div class="modal fade" id="mymodal2" role="dialog">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h4 class="modal-title">Add a new request</h4>
+									</div>
+									<div class="modal-body">
+											<form action="/request_add" method="POST">
+												<div>
+													<h4>
+														Request
+													</h4>
+												</div>
+												<div>
+													<input type="text" name="request" size="40" style="height: 80px;">
+												
+												</div>
+												<div>
+													<input type="submit" value="ADD">
+												</div>
+											</form>
+									</div>
+									<div class="modal-footer">
+											<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+									</div>
+							 </div>
+			
+						</div>				
+					</div>
+		  </li>
+		  <li>
+		  	<div class="dropdown">
+    			<button class="dropbtn"> <span class="glyphicon glyphicon-user"></span> {{session.username}} 
+      				<i class="fa fa-caret-down"></i>
+    			</button>
+	    		<div class="dropdown-content ">
+	      			<a href="/profile">Profile</a>
+	      			<a href="/books_added">Books Added</a>
+	      			<a href="/logout" ><span class="glyphicon glyphicon-log-out"></span>Logout</a>
+    			</div>
+  			</div>
+		  </li>
+		</ul>
+	  </div>
+	</nav>
+
+	<table class="table" style="margin-top: 3.5em">
+
+		<thead class="thead-light" style="background-color: white; color: black">
+    		<tr>
+				<th class="text-center"> Name </th>
+				<th class="text-center"> Email </th>
+	            <th class="text-center"> Contact Number </th>
+	            <th class="text-center"> Request </th>
+	            <th class="text-center"> Date added </th>
+			</tr>	
+  		</thead>
+			
+		<tbody style="background: white; color: black;">
+			{% for value in result %}
+            <tr align="center">
+               <td> {{ value[0] }} </td>
+               <td> {{ value[1] }} </td>
+               <td> {{ value[2] }} </td>
+               <td> {{ value[3] }} </td>
+               <td> {{ value[4] }} </td>
+        	</tr>
+        	{% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
