@@ -4,7 +4,6 @@
 	<title>
 		Profile</title>
 	<link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css" type="text/css">
-	<!-- <link rel="stylesheet" href="/static/style.css" type="text/css"> -->
 	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 	<link rel="stylesheet" href="/static/bootstrap/css/bootstrap-theme.css" type="text/css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -24,6 +23,15 @@
 			margin-left: 17em;
 			margin-bottom: 0px;
 		}
+
+		.nav_button{
+			size: 20px;
+			border: none;
+			background: none;
+			margin-top: 15px;
+			color: grey;
+		}
+
 		.dropdown .dropbtn {
 			font-size: 16px; 
 			border: none;
@@ -65,6 +73,12 @@
 			background-color: #ddd;
 		}
 
+		.tile{
+			border-radius: 5px;
+			background-color: white;
+			color: black;
+			box-shadow: 15px 15px 15px;
+		}
 		/* Show the dropdown menu on hover */
 		.dropdown:hover .dropdown-content {
 			display: block;
@@ -75,26 +89,62 @@
 
 <body>
 	<nav class="navbar navbar-default">
-		<div class="container-fluid">
+	  <div class="container-fluid">
 		<ul class="nav navbar-nav">
-			<li><a href="/">Home</a></li>
+		  <li><a href="/">Home</a></li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
-			<li>
-				<div class="dropdown">
-					<button class="dropbtn"> <span class="glyphicon glyphicon-user"></span> {{session.username}} 
-							<i class="fa fa-caret-down"></i>
-					</button>
-					<div class="dropdown-content ">
-							<a href="/profile">Profile</a>
-							<a href="/books_added">Books Added</a>
-							<a href="/logout" ><span class="glyphicon glyphicon-log-out"></span>Logout</a>
+		 
+		  <li style="color: black;">
+				<button type="button"  data-toggle="modal" data-target="#mymodal2" class="nav_button">Request</button>
+					<div class="modal fade" id="mymodal2" role="dialog">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h4 class="modal-title">Add a new request</h4>
+									</div>
+									<div class="modal-body">
+											<form action="/request_add" method="POST">
+												<div>
+													<h4>
+														Request
+													</h4>
+												</div>
+												<div>
+													<input type="text" name="request" size="40" style="height: 80px;">
+												
+												</div>
+												<div>
+													<input type="submit" value="ADD">
+												</div>
+											</form>
+									</div>
+									<div class="modal-footer">
+											<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+									</div>
+							 </div>
+			
+						</div>				
 					</div>
+		  </li>
+		  <li>
+			<div class="dropdown">
+				<button class="dropbtn"> <span class="glyphicon glyphicon-user"></span> {{session.username}} 
+					<i class="fa fa-caret-down"></i>
+				</button>
+				<div class="dropdown-content ">
+					<a href="/profile">Profile</a>
+					<a href="/books_added">My Books</a>
+					<a href="/myRequest">My Requests</a>
+					<a href="/logout" ><span class="glyphicon glyphicon-log-out"></span>Logout</a>
 				</div>
-			</li>
+			</div>
+		  </li>
 		</ul>
-		</div>
+	  </div>
 	</nav>
+
 	{% if error %}
     		<p class="error"><strong>Error:</strong> {{ error }} </p>
   {% endif %}

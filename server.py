@@ -35,6 +35,22 @@ def editBooks():
 	# print author,isbn
 	return booksAdded()
 
+@app.route('/addbook',methods=['GET','POST'])
+def addBook():
+	return render_template("addbook.html")
+
+@app.route('/delbook',methods=['GET', 'POST'])
+def deleteBooks():
+	isbn = request.form["ISBN"]
+	conn = mysql.connect()
+	cursor =conn.cursor()
+	cursor.execute("DELETE from books where user_id='"+str(session['ID'])+"' and ISBN='"+isbn+"'")
+	conn.commit()
+	# print author,isbn
+	return booksAdded()
+
+
+''' Adding, Editing and Deleting a request'''
 @app.route('/request_add', methods=['GET','POST'])
 def addRequest():
 	req = request.form["request"]
@@ -58,16 +74,37 @@ def viewRequest():
 	return render_template("view.html", result = data)
 
 
+@app.route('/myRequest', methods=['GET','POST'])
+def myRequest():
+	conn = mysql.connect()
+	cursor = conn.cursor()
+	cursor.execute("SELECT requests.requests,requests.time_added from requests where requests.user_id='"+str(session['ID'])+"' order by time_added DESC;")
+	data = cursor.fetchall()
+	return render_template("myrequest.html", result = data)
 
-@app.route('/delbook',methods=['GET', 'POST'])
-def deleteBooks():
-	isbn = request.form["ISBN"]
+@app.route('/editmyrequest',methods=['GET', 'POST'])
+def editMyRquests():
+	oreq = request.form["oldrequest"]
+	req = request.form["request"]
+
 	conn = mysql.connect()
 	cursor =conn.cursor()
-	cursor.execute("DELETE from books where user_id='"+str(session['ID'])+"' and ISBN='"+isbn+"'")
+	cursor.execute("UPDATE requests set requests='"+req+"',time_added='"+time.strftime('%Y-%m-%d')+"'where requests='"+oreq+"'")
 	conn.commit()
-	# print author,isbn
+
+	return myRequest()
+
+
+@app.route('/delmyrequest',methods=['GET', 'POST'])
+def deleteRequests():
+	req = request.form["request"]
+	conn = mysql.connect()
+	cursor =conn.cursor()
+	cursor.execute("DELETE from requests where requests='"+req+"'")
+	conn.commit()
 	return booksAdded()
+
+
 
 @app.route('/profile')
 def profile():

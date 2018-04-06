@@ -101,12 +101,12 @@
 	<nav class="navbar navbar-default">
 	  <div class="container-fluid">
 		<ul class="nav navbar-nav">
-		  <li ><a href="/">Home</a></li>
+		  <li><a href="/">Home</a></li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
 		 
 		  <li style="color: black;">
-		  		<button type="button"  data-toggle="modal" data-target="#mymodal2" class="nav_button">Request</button>
+				<button type="button"  data-toggle="modal" data-target="#mymodal2" class="nav_button">Request</button>
 					<div class="modal fade" id="mymodal2" role="dialog">
 						<div class="modal-dialog">
 							<div class="modal-content">
@@ -139,16 +139,17 @@
 					</div>
 		  </li>
 		  <li>
-		  	<div class="dropdown">
-    			<button class="dropbtn"> <span class="glyphicon glyphicon-user"></span> {{session.username}} 
-      				<i class="fa fa-caret-down"></i>
-    			</button>
-	    		<div class="dropdown-content ">
-	      			<a href="/profile">Profile</a>
-	      			<a href="/books_added">Books Added</a>
-	      			<a href="/logout" ><span class="glyphicon glyphicon-log-out"></span>Logout</a>
-    			</div>
-  			</div>
+			<div class="dropdown">
+				<button class="dropbtn"> <span class="glyphicon glyphicon-user"></span> {{session.username}} 
+					<i class="fa fa-caret-down"></i>
+				</button>
+				<div class="dropdown-content ">
+					<a href="/profile">Profile</a>
+					<a href="/books_added">My Books</a>
+					<a href="/myRequest">My Requests</a>
+					<a href="/logout" ><span class="glyphicon glyphicon-log-out"></span>Logout</a>
+				</div>
+			</div>
 		  </li>
 		</ul>
 	  </div>
