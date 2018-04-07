@@ -37,7 +37,18 @@ def editBooks():
 
 @app.route('/addbook',methods=['GET','POST'])
 def addBook():
-	return render_template("addbook.html")
+	if request.method == 'GET':
+		return render_template("addbook.html")
+	elif request.method == 'POST':
+		query = "INSERT into books(user_id,ISBN,name,author,description,time_added,type)"\
+				"VALUES(%s,%s,%s,%s,%s,%s,%s)"
+		conn = mysql.connect()
+		cursor =conn.cursor()
+		data = (str(session['ID']),request.form["ISBN"],request.form["name"],request.form["author"],request.form["description"],time.strftime('%Y-%m-%d'),request.form["type"])
+		cursor.execute(query,data)
+		conn.commit()
+		return booksAdded()
+
 
 @app.route('/delbook',methods=['GET', 'POST'])
 def deleteBooks():
@@ -49,6 +60,37 @@ def deleteBooks():
 	# print author,isbn
 	return booksAdded()
 
+@app.route('/books_added')
+def booksAdded():
+	conn = mysql.connect()
+	cursor = conn.cursor()
+	cursor.execute("SELECT ISBN,name,author,description, type from books where user_id='"+str(session['ID'])+"'")
+	data = cursor.fetchall()
+	# print data
+	return render_template("books_added.html",result = data)
+
+@app.route('/findbook', methods=['GET','POST'])
+def findBook():
+	conn = mysql.connect()
+	cursor = conn.cursor()
+		
+	if request.method == 'GET':
+		cursor.execute("SELECT books.name,books.author, users.Name,users.email,users.number,books.time_added from users, books where users.ID = books.user_id;")
+		data = cursor.fetchall()
+		return render_template("findbook.html",result = data)
+	elif request.method == 'POST':
+		search = request.form['search']
+		criteria = request.form['criteria']
+		if criteria == 'name':
+			cursor.execute("SELECT books.name,books.author, users.Name,users.email,users.number,books.time_added from users, books where users.ID = books.user_id and books.name='"+search+"'")
+			data = cursor.fetchall()
+		else:
+			cursor.execute("SELECT books.name,books.author, users.Name,users.email,users.number,books.time_added from users, books where users.ID = books.user_id and books.author='"+search+"'")
+			data = cursor.fetchall()
+		print data
+		if(len(data) == 0):
+			error = "No Books Found"
+		return render_template("findbook.html",result = data, error=error)
 
 ''' Adding, Editing and Deleting a request'''
 @app.route('/request_add', methods=['GET','POST'])
@@ -118,14 +160,7 @@ def profile():
 	session['number'] = data[5]
 	return render_template("profile.html")
 
-@app.route('/books_added')
-def booksAdded():
-	conn = mysql.connect()
-	cursor = conn.cursor()
-	cursor.execute("SELECT ISBN,name,author,description, type from books where user_id='"+str(session['ID'])+"'")
-	data = cursor.fetchall()
-	# print data
-	return render_template("books_added.html",result = data)
+
 
 
 @app.route('/editNumber', methods=['GET', 'POST'])
