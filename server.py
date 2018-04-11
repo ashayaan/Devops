@@ -2,6 +2,7 @@ from flask import Flask, flash, redirect, render_template, request, session, abo
 from flaskext.mysql import MySQL
 import os
 import time
+from passlib.hash import sha256_crypt
 
 mysql = MySQL()
 app = Flask(__name__)
@@ -88,6 +89,7 @@ def findBook():
 			cursor.execute("SELECT books.name,books.author, users.Name,users.email,users.number,books.time_added from users, books where users.ID = books.user_id and books.author='"+search+"'")
 			data = cursor.fetchall()
 		print data
+		error=""
 		if(len(data) == 0):
 			error = "No Books Found"
 		return render_template("findbook.html",result = data, error=error)
@@ -206,6 +208,7 @@ def signUp():
 	name = request.form['name']
 	username = request.form['username']
 	password = request.form['password']
+	password = sha256_crypt.encrypt(password)
 	email = request.form['email']
 	conn = mysql.connect()
 	cursor = conn.cursor()
@@ -232,17 +235,22 @@ def do_admin_login():
 	password = request.form['password']
 	username = request.form['username']
 	cursor = mysql.connect().cursor()
-	cursor.execute("SELECT * from users where username='" + username + "' and password='" + password + "'")
+	cursor.execute("SELECT * from users where username='" + username +"'")
 	data = cursor.fetchone()
+	print data;
 	if data is None:
 		session["logged_in"]=False
 		error = 'Username or Password Wrong!'
 		return render_template('signin.html',error=error)
-	else:
+	elif(sha256_crypt.verify(password,data[3])):
 		session['logged_in'] = True
 		session['ID'] = data[0]
 		session['username'] = username
 		return home()
+	else:
+		error = 'Username or Password Wrong!'
+		return render_template('signin.html',error=error)
+
 
 @app.route("/logout")
 def logout():
