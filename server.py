@@ -1,16 +1,33 @@
 from flask import Flask, flash, redirect, render_template, request, session, abort
 from flaskext.mysql import MySQL
+from flask_mail import Mail
+# from flask_security import Security
 import os
 import time
 from passlib.hash import sha256_crypt
 
 mysql = MySQL()
+mail = Mail()
+# security = Security()
 app = Flask(__name__)
+# Database configuration
 app.config['MYSQL_DATABASE_USER'] = 'root'
 app.config['MYSQL_DATABASE_PASSWORD'] = 'Shayaan7'
 app.config['MYSQL_DATABASE_DB'] = 'devops'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
+# Email configuration
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USE_SSL'] = True
+app.config['MAIL_USERNAME'] = 'buzzshayaan@gmail.com'
+app.config['MAIL_PASSWORD'] = 'shayaan7'
+# Security configuration
+app.config['SECURITY_RECOVERABLE'] = True
+
+
 mysql.init_app(app)
+mail.init_app(app)
+# security.init_app(app)
 
 
 

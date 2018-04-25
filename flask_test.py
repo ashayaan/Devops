@@ -1,5 +1,5 @@
 import os
-import flaskr
+import flask
 import urllib2
 import unittest
 import tempfile
