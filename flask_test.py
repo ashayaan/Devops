@@ -71,7 +71,7 @@ class FlaskTestCase(unittest.TestCase):
 
 
     def test_valid_login_logout(self):
-        response = self.login('pranavsr97', 'Pranavsr@1997')
+        response = self.login('pranavsr97', 'FlaskIsAwesome')
         # print response.data
         # print help(self.app)
         # assert 'You were logged in' in response.data
