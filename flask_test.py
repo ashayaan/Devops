@@ -3,7 +3,7 @@ import flask
 import urllib2
 import unittest
 import tempfile
-from server import app
+from server import app, mysql
 from flask_testing import LiveServerTestCase
 
 class FlaskTestCase(unittest.TestCase):
@@ -44,7 +44,7 @@ class FlaskTestCase(unittest.TestCase):
         # os.unlink(flaskr.app.config['DATABASE'])
         pass
 
-    def test_home_status_code(self):
+    def test_1_home_status_code(self):
         result = self.app.get('/signin')
         self.assertEqual(result.status_code, 200) 
 
@@ -54,7 +54,7 @@ class FlaskTestCase(unittest.TestCase):
 
     # def test_registration(self):
 
-    def test_valid_user_registration(self):
+    def test_2_valid_user_registration(self):
         response = self.register('PatKen', 'patkennedy79@gmail.com', 'patkennedy79', 'FlaskIsAwesome')
         self.assertEqual(response.status_code, 200)
         # print response.data
@@ -62,16 +62,16 @@ class FlaskTestCase(unittest.TestCase):
         self.assertNotIn(b'Enter all the details', response.data)
         # self.assertTrue(response.data)
 
-    def test_invalid_user_registration(self):
-        response = self.register('PatKen', 'patkennedy79@gmail.com', 'pranavsr97', 'FlaskIsAwesome')
+    def test_3_invalid_user_registration(self):
+        response = self.register('PatKen', 'patkennedy79@gmail.com', 'patkennedy79', 'FlaskIsAwesome')
         self.assertEqual(response.status_code, 200)
         # print response.data
         self.assertIn(b'Username already existts', response.data)
         # self.assertTrue(response.data)
 
 
-    def test_valid_login_logout(self):
-        response = self.login('pranavsr97', 'FlaskIsAwesome')
+    def test_4_valid_login_logout(self):
+        response = self.login('patkennedy79', 'FlaskIsAwesome')
         # print response.data
         # print help(self.app)
         # assert 'You were logged in' in response.data
@@ -83,7 +83,12 @@ class FlaskTestCase(unittest.TestCase):
         # rv = self.login('adminx', 'default')
         # assert 'Invalid username' in rv.data
         # rv = self.login('admin', 'defaultx')
-        # assert 'Invalid password' in rv.data            
+        # assert 'Invalid password' in rv.data
+        conn = mysql.connect()
+        cursor =conn.cursor()
+        cursor.execute("DELETE FROM users where id>=2")
+        conn.commit()
+        
 
 if __name__ == '__main__':
     unittest.main()
