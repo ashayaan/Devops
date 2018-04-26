@@ -86,7 +86,7 @@ class FlaskTestCase(unittest.TestCase):
         # assert 'Invalid password' in rv.data
         conn = mysql.connect()
         cursor =conn.cursor()
-        cursor.execute("DELETE FROM users where id>=2")
+        cursor.execute('delete from users where username="patkennedy79"')
         conn.commit()
         
 

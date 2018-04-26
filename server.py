@@ -4,6 +4,7 @@ from flask_mail import Mail
 # from flask_security import Security
 import os
 import time
+import logging	
 from passlib.hash import sha256_crypt
 
 
@@ -276,4 +277,5 @@ def logout():
 	return home()
 	
 if __name__ == '__main__':
+	logging.basicConfig(filename='server.log',level=logging.DEBUG)
 	app.run(debug = True,host= '0.0.0.0')

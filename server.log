@@ -1,0 +1,82 @@
+INFO:werkzeug: * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 125-408-711
+INFO:werkzeug: * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 125-408-711
+INFO:werkzeug:127.0.0.1 - - [26/Apr/2018 23:19:31] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 125-408-711
+INFO:werkzeug:127.0.0.1 - - [26/Apr/2018 23:32:15] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Apr/2018 23:32:19] "[37mGET /signin HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.16.82.240 - - [26/Apr/2018 23:34:41] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.16.82.240 - - [26/Apr/2018 23:34:41] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.16.82.240 - - [26/Apr/2018 23:34:41] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.16.82.240 - - [26/Apr/2018 23:34:41] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.16.82.240 - - [26/Apr/2018 23:34:41] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.16.82.240 - - [26/Apr/2018 23:34:41] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.16.82.27 - - [26/Apr/2018 23:34:41] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.16.82.27 - - [26/Apr/2018 23:34:41] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Apr/2018 23:34:41] "[37mGET /signin HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.16.82.27 - - [26/Apr/2018 23:34:41] "[36mGET /static/bootstrap/css/bootstrap-theme.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:172.16.82.27 - - [26/Apr/2018 23:34:41] "[36mGET /static/bootstrap/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:172.16.82.27 - - [26/Apr/2018 23:34:41] "[36mGET /static/bootstrap/css/bootstrap.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:172.16.82.27 - - [26/Apr/2018 23:34:41] "[37mGET /static/back.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.16.82.27 - - [26/Apr/2018 23:34:41] "[36mGET /static/books.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:172.16.82.240 - - [26/Apr/2018 23:34:41] "[37mGET /static/bootstrap/css/bootstrap.min.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.16.82.27 - - [26/Apr/2018 23:34:42] "[36mGET /static/bootstrap/fonts/glyphicons-halflings-regular.woff2 HTTP/1.1[0m" 304 -
+INFO:werkzeug:172.16.82.240 - - [26/Apr/2018 23:34:42] "[37mGET /static/books.jpg HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.16.82.240 - - [26/Apr/2018 23:34:42] "[37mGET /static/back.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.16.82.240 - - [26/Apr/2018 23:34:43] "[37mGET /static/bootstrap/fonts/glyphicons-halflings-regular.woff2 HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.16.82.27 - - [26/Apr/2018 23:34:43] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:172.16.82.27 - - [26/Apr/2018 23:34:46] "[37mGET /showSignUp HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.16.82.240 - - [26/Apr/2018 23:34:51] "[37mGET /showSignUp HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.16.82.240 - - [26/Apr/2018 23:34:57] "[37mGET /signin HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.16.82.240 - - [26/Apr/2018 23:34:59] "[37mGET /showSignUp HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.16.82.240 - - [26/Apr/2018 23:35:00] "[37mGET /signin HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.16.82.240 - - [26/Apr/2018 23:35:01] "[37mGET /showSignUp HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.16.82.240 - - [26/Apr/2018 23:35:02] "[37mGET /signin HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.16.82.240 - - [26/Apr/2018 23:35:03] "[37mGET /showSignUp HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.16.82.240 - - [26/Apr/2018 23:35:04] "[37mGET /signin HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.16.82.240 - - [26/Apr/2018 23:36:15] "[37mPOST /login HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Apr/2018 23:37:02] "[37mGET /showSignUp HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Apr/2018 23:37:29] "[37mPOST /signUp HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Apr/2018 23:37:35] "[37mPOST /login HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Apr/2018 23:37:35] "[37mGET /static/mod-find-book.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Apr/2018 23:37:35] "[37mGET /static/add_book.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Apr/2018 23:37:35] "[37mGET /static/request2.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Apr/2018 23:37:56] "[37mPOST /login HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Apr/2018 23:37:58] "[1m[31mGET /login HTTP/1.1[0m" 400 -
+INFO:werkzeug:127.0.0.1 - - [26/Apr/2018 23:38:00] "[1m[31mGET /login HTTP/1.1[0m" 400 -
+INFO:werkzeug:127.0.0.1 - - [26/Apr/2018 23:38:03] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 125-408-711
+INFO:werkzeug:127.0.0.1 - - [26/Apr/2018 23:46:37] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Apr/2018 23:46:38] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Apr/2018 23:46:39] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Apr/2018 23:46:39] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Apr/2018 23:46:40] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Apr/2018 23:46:40] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Apr/2018 23:46:40] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Apr/2018 23:46:40] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Apr/2018 23:48:04] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Apr/2018 23:48:06] "[37mGET /signin HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Apr/2018 23:48:10] "[37mPOST /login HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Apr/2018 23:48:11] "[37mGET /view_request HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Apr/2018 23:48:13] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Apr/2018 23:48:14] "[37mGET /addbook HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Apr/2018 23:48:15] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Apr/2018 23:48:16] "[37mGET /findbook HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Apr/2018 23:48:18] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Apr/2018 23:48:51] "[37mGET /addbook HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Apr/2018 23:48:53] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Apr/2018 23:48:53] "[37mGET /view_request HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Apr/2018 23:48:56] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Apr/2018 23:49:32] "[37mGET /signin HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Apr/2018 23:49:37] "[37mGET /addbook HTTP/1.1[0m" 200 -
